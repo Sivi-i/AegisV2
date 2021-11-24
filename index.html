@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Aegis</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./Styling/Aegis.css" rel="stylesheet" type="text/css" />
+    <script
+      type="text/javascript"
+      src="./JavaScript/AnimationHandler.js"
+    ></script>
+  </head>
+  <body onload="AnimationStart()">
+    <div id="GameDiv">
+      <div id="GameBGDiv">
+        <div id="GameScreenDiv">
+          <div id="GameplayDiv">
+            <p id="IdleAnimController"></p>
+            <p id="RunAnimController"></p>
+            <p id="AttackAnimController"></p>
+            <p id="JumpBackController"></p>
+          </div>
+        </div>
+        <div id="ButtonDiv">
+          <button id="AttackButton" class="GameButton" onclick="BeginPlayerAttack()">
+            Attack
+          </button>
+          <button id="DefendButton" class="GameButton" onclick = "PlayerJumpBack()">Defend</button>
+          <button id="HealButton" class="GameButton">Heal</button>
+          <br />
+          <br />
+          <button id="ChargeButton" class="GameButton">Charge</button>
+          <button id="SpecialButton" class="GameButton">Special Attack</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
