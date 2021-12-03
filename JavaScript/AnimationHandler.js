@@ -2,7 +2,6 @@ var tID;
 let runAnimPath= '../Assets/Pictures/Sprites/Player/Run.png';
 let blackImagePath = '../Assets/Pictures/Backgrounds/BlackAegisBG.jpg';
 let idleSprite = document.getElementById('IdleAnimController');
-let animationInMotion = false;
 
 const ANIMATION_FRAME_DIFFERENCE = 69;
 
@@ -23,7 +22,36 @@ function IdleAnimation(){
     }, 150);
 }
 
-
+function BeginPlayerAttack(){
+   var position = 0;
+   var animID;
+   var framesRun = 0;
+   let idleSpriteHolder = document.getElementById('IdleAnimController');
+   let runSpriteHolder = document.getElementById('RunAnimController');
+   idleSpriteHolder.hidden = true;
+   runSpriteHolder.hidden = false;
+   
+  document.getElementById('RunAnimController').animate([
+            {transform: 'translateX(325px)'}
+        ], {
+            duration: 2000,
+            iterations: 1
+        });
+    animID = setInterval(() => {
+        document.getElementById('RunAnimController').style.backgroundPosition = `-${position}px 0px`;
+        if(position <  345){
+            position = position + 69;
+            framesRun++;
+            }else{
+            position = 0;
+            }
+        if(framesRun == 15){
+                clearInterval(animID);
+                document.getElementById('RunAnimController').style.transform = 'translateX(-10px)';
+                AttackAnimation();
+            }
+        }, 75);
+}
 
 function AttackAnimation(){
     let runSpriteHolder = document.getElementById('RunAnimController');
@@ -48,38 +76,6 @@ function AttackAnimation(){
             attackSprite.style.transform = 'translateX(-200px)';
         }
     }, 40);
-}
-
-function BeginPlayerAttack(){
-   var position = 0;
-   var animID;
-   var framesRun = 0;
-   let idleSpriteHolder = document.getElementById('IdleAnimController');
-   let runSpriteHolder = document.getElementById('RunAnimController');
-   idleSpriteHolder.hidden = true;
-   runSpriteHolder.hidden = false;
-
-   document.getElementById('RunAnimController').animate([
-            {transform: 'translateX(600px)'}
-        ], {
-            duration: 4000,
-            iterations: 1
-        });
-
-    animID = setInterval(() => {
-        document.getElementById('RunAnimController').style.backgroundPosition = `-${position}px 0px`;
-        if(position <  345){
-            position = position + 69;
-            framesRun++;
-            }else{
-            position = 0;
-            }
-        if(framesRun == 15){
-                clearInterval(animID);
-                document.getElementById('RunAnimController').style.transform = 'translateX(-10px)';
-                AttackAnimation();
-            }
-        }, 75);
 }
 
 function PlayerJumpBackAnimation(){
@@ -117,19 +113,59 @@ function PlayerJumpBackAnimation(){
 
 }
 
-// function PlayerAttackMovementAnimation(){
-//     var step = 1;
-//     var xPosition = document.getElementById('runAnimController').offsetLeft;
-//     if(x < 500){
-//         xPosition = xPosition + step;
-//         document.getElementById('runAnimController').style.left = xPosition + 'px';
-//     }
-// }
+function BeginPlayerDefend(){
+    PlayerDefendSphereAnimation();
+}
 
-// function PlayerAttackMovementTimer(){
-//     PlayerAttackMovementAnimation();
-//     my_time = setTimeout('PlayerAttackMovementTimer', 10);
-// }
+function PlayerDefendSphereAnimation(){
+    var position = 0;
+    let animationFrames = 0;
+    document.getElementById('DefendAnimController').style.visibility = 'visible';
+    defendSphereID = setInterval(() => {
+        document.getElementById('DefendAnimController').style.backgroundPosition = `-${position}px 0px`;
+        if(position <  2600){
+            position = position + 130;
+            animationFrames++;
+          }else{
+            position = 0;
+          }
+       //TODO: REMOVE THIS AFTER TESTING (animationFrames && Code Below)
+       if(animationFrames == 40){
+            clearInterval(defendSphereID);
+            document.getElementById('DefendAnimController').style.visibility = 'hidden';
+        }
+       
+    }, 35);
+}
+
+function DisableDefendSphereAnimation(){
+    clearInterval(defendSphereID);
+    document.getElementById('DefendAnimController').style.visibility = 'hidden';
+}
+
+function BeginPlayerHeal(){
+    PlayerHealAnimation();
+}
+
+function PlayerHealAnimation(){
+    var position = 0;
+    let animationFrames = 0;
+    document.getElementById('HealAnimController').style.visibility = 'visible';
+    healSphereID = setInterval(() => {
+        if(position < 4700){
+            document.getElementById('HealAnimController').style.backgroundPosition = `-${position}px 0px`;
+            position = position + 192;
+            animationFrames++;
+        }else{
+            position = 10;
+        }
+
+        if(animationFrames == 25){
+            clearInterval(healSphereID);
+            document.getElementById('HealAnimController').style.visibility = 'hidden';
+        }
+    }, 50);
+}
 
 function AnimationStart(){
     //let runSprite = document.getElementById('RunAnimController');
