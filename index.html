@@ -9,30 +9,56 @@
       type="text/javascript"
       src="./JavaScript/AnimationHandler.js"
     ></script>
+    <script type="text/javascript" src="./JavaScript/PlayerClass.js"></script>
   </head>
   <body onload="AnimationStart()">
     <div id="GameDiv">
       <div id="GameBGDiv">
         <div id="GameScreenDiv">
           <div id="GameplayDiv">
+            <!--Character Animations-->
             <p id="IdleAnimController"></p>
             <p id="RunAnimController"></p>
             <p id="AttackAnimController"></p>
             <p id="JumpBackController"></p>
             <p id="DefendAnimController"></p>
-            <p id ="HealAnimController"></p>
+            <p id="HealAnimController"></p>
+            <p id="ChargeAnimController"></p>
+            <p id="SpecialAttackAnimController"></p>
+            <!--Enemy Basic Mage Animations-->
+            <p id="MageIdleAnimController"></p>
           </div>
         </div>
         <div id="ButtonDiv">
-          <button id="AttackButton" class="GameButton" onclick="BeginPlayerAttack()">
+          <button id="AttackButton" class="GameButton" onclick="PlayerAttack()">
             Attack
           </button>
-          <button id="DefendButton" class="GameButton" onclick = "BeginPlayerDefend()">Defend</button>
-          <button id="HealButton" class="GameButton" onclick = "BeginPlayerHeal()">Heal</button>
+          <button id="DefendButton" class="GameButton" onclick="PlayerDefend()">
+            Defend
+          </button>
+          <button
+            id="HealButton"
+            class="GameButton"
+            onclick="BeginPlayerHeal()"
+          >
+            Heal
+          </button>
           <br />
           <br />
-          <button id="ChargeButton" class="GameButton">Charge</button>
-          <button id="SpecialButton" class="GameButton">Special Attack</button>
+          <button
+            id="ChargeButton"
+            class="GameButton"
+            onclick="BeginPlayerCharge()"
+          >
+            Charge
+          </button>
+          <button
+            id="SpecialButton"
+            class="GameButton"
+            onclick="BeginSpecialAttack()"
+          >
+            Special Attack
+          </button>
         </div>
       </div>
     </div>

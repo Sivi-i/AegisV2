@@ -167,18 +167,82 @@ function PlayerHealAnimation(){
     }, 50);
 }
 
+function BeginPlayerCharge(){
+    PlayerChargeAnimation();
+}
+
+function PlayerChargeAnimation(){
+    var position = 0;
+    let animationFrames = 0;
+    document.getElementById('ChargeAnimController').style.visibility = 'visible';
+    chargeSphereID = setInterval(() => {
+        if(position < 4780){
+            document.getElementById('ChargeAnimController').style.backgroundPosition = `-${position}px 0px`;
+            position = position + 192;
+            animationFrames++;
+        }else{
+            position = 0;
+        }
+
+        if(animationFrames == 25){
+            clearInterval(chargeSphereID);
+            document.getElementById('ChargeAnimController').style.visibility = 'hidden';
+        }
+    }, 30);
+}
+
+function BeginSpecialAttack(){
+    SpecialAttackAnimation();
+}
+
+function SpecialAttackAnimation(){
+    var position = 0;
+    let animationFrames = 0;
+    document.getElementById('IdleAnimController').style.visibility = 'hidden';
+    document.getElementById('SpecialAttackAnimController').style.visibility = 'visible';
+    specialAttackSphereID = setInterval(() => {
+        if(position < 740){
+            document.getElementById('SpecialAttackAnimController').style.backgroundPosition = `-${position}px 0px`;
+            position = position + 68;
+            animationFrames++;
+        }else{
+            position = 0;
+        }
+
+        if(animationFrames == 13){
+            clearInterval(specialAttackSphereID);
+            document.getElementById('SpecialAttackAnimController').style.visibility = 'hidden';
+            document.getElementById('IdleAnimController').style.visibility = 'visible';
+        }
+
+    },60);
+}
+
+function BeginMageIdle(){
+    MageIdleAnimation();
+}
+
+function MageIdleAnimation(){
+    let mageIdlePosition = 0;
+    mageIdleID = setInterval(() => {
+        document.getElementById('MageIdleAnimController').style.backgroundPosition = `-${mageIdlePosition}px 0px`;
+
+        if(position < 390){
+            mageIdlePosition = mageIdlePosition + 49;
+        }else{
+            mageIdlePosition = 0;
+        }
+    }, 150);
+}
+
 function AnimationStart(){
-    //let runSprite = document.getElementById('RunAnimController');
-    //runSprite.hidden = true;
     let jumpBackHolder = document.getElementById('JumpBackController');
     let runSpriteHolder = document.getElementById('RunAnimController');
     let attackSpriteHolder = document.getElementById('AttackAnimController');
     runSpriteHolder.hidden = true;
     attackSpriteHolder.hidden = true;
     jumpBackHolder.hidden = true;
-    //jumpBackHolder.hidden = true;
     IdleAnimation();
-    //PlayerAttack();
 }
 
 
