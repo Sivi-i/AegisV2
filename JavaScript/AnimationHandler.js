@@ -10,7 +10,6 @@ function IdleAnimation(){
     var position = 0;
     const frameDistance = 69; //How far Each Sprite Frame is from the Last in Pixels
     idleSpriteHolder.hidden = false;
-    animationInMotion = false;
     tID = setInterval(() => {
         document.getElementById('IdleAnimController').style.backgroundPosition = `-${position}px 0px`;
         
@@ -223,16 +222,15 @@ function BeginMageIdle(){
 }
 
 function MageIdleAnimation(){
-    let mageIdlePosition = 0;
+    let position = 0;
     mageIdleID = setInterval(() => {
-        document.getElementById('MageIdleAnimController').style.backgroundPosition = `-${mageIdlePosition}px 0px`;
-
-        if(position < 390){
-            mageIdlePosition = mageIdlePosition + 49;
+        document.getElementById('MageIdleAnimController').style.backgroundPosition = `-${position}px 0px`;
+        if(position < 1500){
+            position = position + 224;
         }else{
-            mageIdlePosition = 0;
+            position = 0;
         }
-    }, 150);
+    }, 100);
 }
 
 function AnimationStart(){
@@ -243,6 +241,7 @@ function AnimationStart(){
     attackSpriteHolder.hidden = true;
     jumpBackHolder.hidden = true;
     IdleAnimation();
+    BeginMageIdle();
 }
 
 
