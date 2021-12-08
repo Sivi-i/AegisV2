@@ -223,6 +223,15 @@ function BeginMageIdle(){
 
 function MageIdleAnimation(){
     let position = 0;
+    document.getElementById('MageRunAnimController').animate([
+        {transform: 'translateX(-290px)'}
+    ],
+        {
+            duration: 1700,
+            iterations: 1
+        }
+    );
+
     mageIdleID = setInterval(() => {
         document.getElementById('MageIdleAnimController').style.backgroundPosition = `-${position}px 0px`;
         if(position < 1500){
@@ -231,6 +240,34 @@ function MageIdleAnimation(){
             position = 0;
         }
     }, 100);
+}
+
+function BeginMageAttack(){
+    MageRunAnimation();
+}
+
+function MageRunAnimation(){
+    let position = 0;
+    document.getElementById('MageIdleAnimController').style.visibility = 'hidden';
+    document.getElementById('MageRunAnimController').style.visibility = 'visible';
+    mageAttackID = setInterval(() => {
+        document.getElementById('MageRunAnimController').style.backgroundPosition = `-${position}px 0px`;
+        if(position < 1500){
+            position = position + 224;
+        }else{
+            position = 0;
+        }
+    }, 100);  
+}
+
+function MageAttackAnimation(){
+    
+}
+
+function StopMageAttackAnimation(){
+    clearInterval(mageAttackID);
+    document.getElementById('MageAttackAnimController').style.visibility = 'hidden';
+    document.getElementById('MageIdleAnimController').style.visibility = 'visible';
 }
 
 function AnimationStart(){
