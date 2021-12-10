@@ -9,7 +9,7 @@
       type="text/javascript"
       src="./JavaScript/AnimationHandler.js"
     ></script>
-    <script type="text/javascript" src="./JavaScript/PlayerClass.js"></script>
+    <script type="text/javascript" src="./JavaScript/Player.js"></script>
   </head>
   <body onload="AnimationStart()">
     <div id="GameDiv">
@@ -18,48 +18,39 @@
           <div id="GameplayDiv">
             <!--Character Animations-->
             <p id="IdleAnimController"></p>
+            <p id="DashAnimController"></p>
             <p id="RunAnimController"></p>
-            <p id="AttackAnimController"></p>
-            <p id="JumpBackController"></p>
+            <p id="WeakAttackAnimController"></p>
+            <p id="JumpBackAnimController"></p>
             <p id="DefendAnimController"></p>
             <p id="HealAnimController"></p>
             <p id="ChargeAnimController"></p>
             <p id="SpecialAttackAnimController"></p>
-            <!--Enemy Basic Mage Animations-->
+            <!--Enemy Animations-->
             <p id="MageIdleAnimController"></p>
-            <p id="MageRunAnimController"></p>
+            <p id="EnemyRunAnimController"></p>
+            <p id="EnemyWeakAttackAnimController"></p>
+            <p id="EnemyMediumAttackAnimController"></p>
+            <p id="EnemyStrongAttackAnimController"></p>
+            <p id="EnemyBurstAttackAnimController"></p>
+            <p id="EnemyDefendAnimController"></p>
+            <p id="EnemyChargeAnimController"></p>
+            <p id="EnemyHealAnimController"></p>
+            <div id="GameVFXDiv"></div>
           </div>
         </div>
         <div id="ButtonDiv">
-          <button id="AttackButton" class="GameButton" onclick="BeginMageAttack()">
-            Attack
-          </button>
-          <button id="DefendButton" class="GameButton" onclick="PlayerDefend()">
-            Defend
-          </button>
-          <button
-            id="HealButton"
-            class="GameButton"
-            onclick="BeginPlayerHeal()"
-          >
-            Heal
-          </button>
+          <button id="WeakAttackButton" class="GameButton" onclick="JumpBackAnimation()">Weak Attack</button>
+          <button id="MediumAttackButton" class="GameButton" onclick="">Medium Attack</button>
+          <button id="StrongAttackButton" class="GameButton" onclick="">Strong Attack</button>
           <br />
           <br />
-          <button
-            id="ChargeButton"
-            class="GameButton"
-            onclick="BeginPlayerCharge()"
-          >
-            Charge
-          </button>
-          <button
-            id="SpecialButton"
-            class="GameButton"
-            onclick="BeginSpecialAttack()"
-          >
-            Special Attack
-          </button>
+          <button id="BurstAttackButton" class="GameButton" onclick="">Burst Attack</button>
+          <br />
+          <br />
+          <button id="DefendButton" class="GameButton" onclick="">Defend</button>
+          <button id="ChargeButton" class="GameButton" onclick="">Charge</button>
+          <button id="HealButton" class="GameButton" onclick="">Heal</button>
         </div>
       </div>
     </div>

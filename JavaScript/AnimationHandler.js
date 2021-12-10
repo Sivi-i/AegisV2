@@ -1,115 +1,93 @@
 var tID;
-let runAnimPath= '../Assets/Pictures/Sprites/Player/Run.png';
-let blackImagePath = '../Assets/Pictures/Backgrounds/BlackAegisBG.jpg';
-let idleSprite = document.getElementById('IdleAnimController');
-
-const ANIMATION_FRAME_DIFFERENCE = 69;
+let position = 0;
+let animationFrames = 0;
 
 function IdleAnimation(){
     let idleSpriteHolder = document.getElementById('IdleAnimController');
     var position = 0;
-    const frameDistance = 69; //How far Each Sprite Frame is from the Last in Pixels
     idleSpriteHolder.hidden = false;
     tID = setInterval(() => {
         document.getElementById('IdleAnimController').style.backgroundPosition = `-${position}px 0px`;
         
-        if(position < 345){
-            position = position + frameDistance;
+        if(position < 280){
+            position = position + 70;
         }else{
             position = 0;
         }
     }, 150);
 }
 
-function BeginPlayerAttack(){
-   var position = 0;
-   var animID;
-   var framesRun = 0;
-   let idleSpriteHolder = document.getElementById('IdleAnimController');
-   let runSpriteHolder = document.getElementById('RunAnimController');
-   idleSpriteHolder.hidden = true;
-   runSpriteHolder.hidden = false;
-   
-  document.getElementById('RunAnimController').animate([
-            {transform: 'translateX(325px)'}
-        ], {
-            duration: 2000,
-            iterations: 1
-        });
-    animID = setInterval(() => {
-        document.getElementById('RunAnimController').style.backgroundPosition = `-${position}px 0px`;
-        if(position <  345){
-            position = position + 69;
-            framesRun++;
-            }else{
-            position = 0;
-            }
-        if(framesRun == 15){
-                clearInterval(animID);
-                document.getElementById('RunAnimController').style.transform = 'translateX(-10px)';
-                AttackAnimation();
-            }
-        }, 75);
+function BeginWeakAttack(){
+    RunAnimation();
 }
 
-function AttackAnimation(){
-    let runSpriteHolder = document.getElementById('RunAnimController');
-    let attackSprite = document.getElementById('AttackAnimController');
-    attackSprite.hidden = false;
-    attackSprite.style.transform = 'translateX(200px)';
-    runSpriteHolder.hidden = true;
-    var position = 0;
-    let animationFrames = 0;
-    const frameDistance = 67;
-    attackAnimID = setInterval(() => {
-        document.getElementById('AttackAnimController').style.backgroundPosition = `-${position}px 0px`;
-        if(position <  345){
-            position = position + frameDistance;
-            animationFrames++;
-          }else{
-            position = 0;
-          }
-        if(animationFrames == 10){
-            clearInterval(attackAnimID);
-            PlayerJumpBackAnimation();
-            attackSprite.style.transform = 'translateX(-200px)';
+function RunAnimation(){
+    position = 0;
+    animationFrames = 0;
+    document.getElementById('RunAnimController').style.visibility = 'visible';
+    document.getElementById('IdleAnimController').style.visibility = 'hidden';
+
+    document.getElementById('RunAnimController').animate([
+        {transform: 'translateX(270px)'}
+    ],
+        {
+            duration: 700,
+            iterations: 1
         }
-    }, 40);
-}
-
-function PlayerJumpBackAnimation(){
-     let attackSpriteHolder = document.getElementById('AttackAnimController');
-     let playerJumpBackHolder = document.getElementById('JumpBackController');
-     let idleSpriteHolder = document.getElementById('IdleAnimController');
-     let position = 0;
-     let animationFrames = 0;
-     const frameDistance = 57;
-     playerJumpBackHolder.style.transform = 'translateX(200px)';
-     playerJumpBackHolder.hidden = false;
-     attackSpriteHolder.hidden = true;
-    jumpBackID = setInterval(() => {
-          document.getElementById('JumpBackController').animate([
-            {transform: 'translateX(-25px)'}
-        ], {
-            duration: 1000,
-            iterations: 1
-        });
-        document.getElementById('JumpBackController').style.backgroundPosition = `-${position}px 0px`;
-        if(position <  100){
-            position = position + frameDistance;
+    )
+    runID = setInterval(() => {
+        document.getElementById('RunAnimController').style.backgroundPosition = `-${position}px 0px`;
+        if(position <  450){
+            position = position + 68;
             animationFrames++;
           }else{
             position = 0;
           }
 
-        if(animationFrames == 5){
-            clearInterval(jumpBackID);
-            playerJumpBackHolder.hidden = true;
-            idleSpriteHolder.hidden = false;
-            //IdleAnimation();
+        if(animationFrames == 6){
+            clearInterval(runID);
+            document.getElementById('RunAnimController').style.visibility = 'hidden';
+            WeakAttackAnimation();
         }
     }, 100);
+}
 
+function WeakAttackAnimation(){
+    position = 0;
+    animationFrames = 0;
+    document.getElementById('WeakAttackAnimController').style.visibility = 'visible';
+
+    weakAttackID = setInterval(() => {
+        document.getElementById('WeakAttackAnimController').style.backgroundPosition = `-${position}px 0px`;
+        if(position <  250){
+            position = position + 95;
+            animationFrames++;
+          }else{
+            position = 0;
+          }
+
+        if(animationFrames == 4){
+            clearInterval(weakAttackID);
+            document.getElementById('WeakAttackAnimController').style.visibility = 'hidden';
+            JumpBackAnimation();
+        }
+    }, 80);
+}
+
+function JumpBackAnimation(){
+    position = 0;
+    animationFrames = 0;
+    document.getElementById('JumpBackAnimController').style.visibility = 'visible';
+
+    jumpBackID = setInterval(() => {
+        document.getElementById('JumpBackAnimController').style.backgroundPosition = `-${position}px 0px`;
+        if(position <  475){
+            position = position + 67;
+            animationFrames++;
+          }else{
+            position = 0;
+          } 
+    }, 100);
 }
 
 function BeginPlayerDefend(){
@@ -223,15 +201,6 @@ function BeginMageIdle(){
 
 function MageIdleAnimation(){
     let position = 0;
-    document.getElementById('MageRunAnimController').animate([
-        {transform: 'translateX(-290px)'}
-    ],
-        {
-            duration: 1700,
-            iterations: 1
-        }
-    );
-
     mageIdleID = setInterval(() => {
         document.getElementById('MageIdleAnimController').style.backgroundPosition = `-${position}px 0px`;
         if(position < 1500){
@@ -250,7 +219,15 @@ function MageRunAnimation(){
     let position = 0;
     document.getElementById('MageIdleAnimController').style.visibility = 'hidden';
     document.getElementById('MageRunAnimController').style.visibility = 'visible';
-    mageAttackID = setInterval(() => {
+    document.getElementById('MageRunAnimController').animate([
+        {transform: 'translateX(-270px)'}
+    ],
+        {
+            duration: 1200,
+            iterations: 1
+        }
+    );
+    mageRunID = setInterval(() => {
         document.getElementById('MageRunAnimController').style.backgroundPosition = `-${position}px 0px`;
         if(position < 1500){
             position = position + 224;
@@ -264,19 +241,13 @@ function MageAttackAnimation(){
     
 }
 
-function StopMageAttackAnimation(){
-    clearInterval(mageAttackID);
-    document.getElementById('MageAttackAnimController').style.visibility = 'hidden';
+function StopMageAttack(){
+    clearInterval(mageRunID);
+    document.getElementById('MageRunAnimController').style.visibility = 'hidden';
     document.getElementById('MageIdleAnimController').style.visibility = 'visible';
 }
 
 function AnimationStart(){
-    let jumpBackHolder = document.getElementById('JumpBackController');
-    let runSpriteHolder = document.getElementById('RunAnimController');
-    let attackSpriteHolder = document.getElementById('AttackAnimController');
-    runSpriteHolder.hidden = true;
-    attackSpriteHolder.hidden = true;
-    jumpBackHolder.hidden = true;
     IdleAnimation();
     BeginMageIdle();
 }
