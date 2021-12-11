@@ -81,13 +81,30 @@ function JumpBackAnimation(){
 
     jumpBackID = setInterval(() => {
         document.getElementById('JumpBackAnimController').style.backgroundPosition = `-${position}px 0px`;
-        if(position <  475){
-            position = position + 67;
+        if(position <  460){
+            position = position + 68;
             animationFrames++;
           }else{
-            position = 0;
+            position = -20;
           } 
+          JumpBackAnimationMovement();
+        if(animationFrames == 7){
+            clearInterval(jumpBackID);
+            document.getElementById('JumpBackAnimController').style.visibility = 'hidden';
+            document.getElementById('IdleAnimController').style.visibility = 'visible';
+        }
     }, 100);
+}
+
+function JumpBackAnimationMovement(){
+    document.getElementById('JumpBackAnimController').animate([
+        {transform: 'translateX(-230px)'}
+    ],
+        {
+            duration: 500,
+            iterations: 1
+        }
+    )
 }
 
 function BeginPlayerDefend(){
