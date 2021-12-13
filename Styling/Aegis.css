@@ -48,6 +48,7 @@ html {
   background: url("../Assets/Sprites/Player/Idle/Idle.png") 0px 0px;
   background-repeat: no-repeat;
   position: absolute;
+  /* visibility: hidden; */
 }
 
 #RunAnimController {
@@ -66,6 +67,46 @@ html {
   margin: 275px 490px;
   background: url("../Assets/Sprites/Player/Attacks/Weak_Attack/WeakAttack.png")
     0px 0px;
+  background-repeat: no-repeat;
+  position: absolute;
+  visibility: hidden;
+}
+
+#MediumAttackStartAnimController {
+  height: 66px;
+  width: 71px;
+  margin: 268px 218px;
+  background: url("../Assets/Sprites/Player/Attacks/Medium_Attack/Medium_Attack_Start.png");
+  background-repeat: no-repeat;
+  position: absolute;
+  visibility: hidden;
+}
+
+#MediumAttackChargeUpAnimController {
+  height: 66px;
+  width: 74px;
+  margin: 268px 218px;
+  background: url("../Assets/Sprites/Player/Attacks/Medium_Attack/Medium_Attack_Charge_Up.png");
+  background-repeat: no-repeat;
+  position: absolute;
+  visibility: hidden;
+}
+
+#MediumAttackRushAnimController {
+  height: 66px;
+  width: 139.5px;
+  margin: 268px 180px;
+  background: url("../Assets/Sprites/Player/Attacks/Medium_Attack/Medium_Attack_Charge_Movement.png");
+  background-repeat: no-repeat;
+  position: absolute;
+  visibility: hidden;
+}
+
+#MediumAttackReturnAnimController {
+  height: 66px;
+  width: 70px;
+  margin: 270px 650px;
+  background: url("../Assets/Sprites/Player/Attacks/Medium_Attack/Medium_Attack_Ending.png");
   background-repeat: no-repeat;
   position: absolute;
   visibility: hidden;

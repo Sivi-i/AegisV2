@@ -75,36 +75,169 @@ function WeakAttackAnimation(){
 }
 
 function JumpBackAnimation(){
-    position = 0;
+    position = -5;
     animationFrames = 0;
     document.getElementById('JumpBackAnimController').style.visibility = 'visible';
 
     jumpBackID = setInterval(() => {
         document.getElementById('JumpBackAnimController').style.backgroundPosition = `-${position}px 0px`;
+        JumpBackAnimationMovement();
         if(position <  460){
             position = position + 68;
             animationFrames++;
           }else{
-            position = -20;
+            position = -5;
           } 
-          JumpBackAnimationMovement();
-        if(animationFrames == 7){
+          
+        if(animationFrames == 6){
             clearInterval(jumpBackID);
             document.getElementById('JumpBackAnimController').style.visibility = 'hidden';
             document.getElementById('IdleAnimController').style.visibility = 'visible';
         }
-    }, 100);
+        
+    }, 70);
 }
 
 function JumpBackAnimationMovement(){
     document.getElementById('JumpBackAnimController').animate([
-        {transform: 'translateX(-230px)'}
+        {transform: 'translateX(-230px)'},
+        
+        
+    ],
+        {
+            duration: 450,
+            iterations: 1
+        }
+    )
+}
+
+function BeginMediumAttack(){
+    MediumAttackStartAnimation();
+}
+
+function MediumAttackStartAnimation(){
+    position = 0;
+    animationFrames = 0;
+    document.getElementById('IdleAnimController').style.visibility = 'hidden';
+    document.getElementById('MediumAttackStartAnimController').style.visibility = 'visible';
+
+    mediumAttackID = setInterval(() => {
+        document.getElementById('MediumAttackStartAnimController').style.backgroundPosition = `-${position}px 0px`;
+        if(position < 331){ 
+            position = position + 65;
+            animationFrames++;
+          }else{
+            position = 0;
+          }
+
+          if(animationFrames == 5){
+            clearInterval(mediumAttackID);
+            MediumAttackChargeUpAnimation();
+            document.getElementById('MediumAttackStartAnimController').style.visibility = 'hidden';
+          }
+    }, 100);
+}
+
+function MediumAttackChargeUpAnimation(){
+    position = 0;
+    animationFrames = 0;
+    document.getElementById('MediumAttackChargeUpAnimController').style.visibility = 'visible';
+    document.getElementById('IdleAnimController').style.visibility = 'hidden';
+
+    mediumAttackChargeUpID = setInterval(() => {
+        document.getElementById('MediumAttackChargeUpAnimController').style.backgroundPosition = `-${position}px 0px`;
+        if(position < 278){
+            position = position + 68;
+            animationFrames++;
+          }else{
+            position = 0;
+          }
+
+          if(animationFrames == 4){
+            clearInterval(mediumAttackChargeUpID);
+            MediumAttackRushAnimation();
+            document.getElementById('MediumAttackChargeUpAnimController').style.visibility = 'hidden';
+          }
+    }, 100);
+}
+
+function MediumAttackRushAnimation(){
+    position = 0;
+    animationFrames = 0;
+    document.getElementById('MediumAttackRushAnimController').style.visibility = 'visible';
+    document.getElementById('IdleAnimController').style.visibility = 'hidden';
+    MediumAttackRushMovement();
+    mediumAttackChargeUpID = setInterval(() => {
+        document.getElementById('MediumAttackRushAnimController').style.backgroundPosition = `-${position}px 0px`;
+        if(position <  137){
+            position = position + 139.7;
+            animationFrames++;
+          }else{
+            position = 0;
+          }
+
+          if(animationFrames == 3){
+              clearInterval(mediumAttackChargeUpID);
+              document.getElementById('MediumAttackRushAnimController').style.visibility = 'hidden';
+              MediumAttackLandingAnimation();
+          }
+
+    }, 100);
+}
+
+function MediumAttackRushMovement(){
+    document.getElementById('MediumAttackRushAnimController').animate([
+        {transform: 'translateX(425px)'}
     ],
         {
             duration: 500,
             iterations: 1
         }
     )
+}
+
+function MediumAttackLandingAnimation(){ 
+    position = 0;
+    animationFrames = 0;
+    document.getElementById('MediumAttackReturnAnimController').style.visibility = 'visible';
+
+    mediumAttackEndingID = setInterval(() => {
+        document.getElementById('MediumAttackReturnAnimController').style.backgroundPosition = `-${position}px 0px`;
+        if(position <  140){
+            position = position + 70;
+            animationFrames++;
+          }else{
+            position = 0;
+          }
+        
+          if(animationFrames == 3){
+            clearInterval(mediumAttackEndingID);
+            MediumAttackTeleportAnimation();
+          }
+    }, 100);
+}
+
+function MediumAttackTeleportAnimation(){
+    let delayFrames = 0;
+    let mediumAttackEnding = document.getElementById('MediumAttackReturnAnimController');
+    mediumAttackEnding.style.background = "url('Assets/Sprites/Player/Attacks/Medium_Attack/Medium_Attack_Return_Teleport.png')";
+    mediumAttackEnding.style.width = '42px';
+    mediumAttackEnding.style.height = '72px';
+    mediumAttackEnding.style.margin = '255px 650px';
+
+    endingID = setInterval(() => {
+        delayFrames++;
+        if(delayFrames == 1){
+            clearInterval(endingID);
+            mediumAttackEnding.style.margin = '255px 230px';
+            ResetMediumAttackAnimations();
+        }
+    }, 50);
+}
+
+function ResetMediumAttackAnimations(){
+    document.getElementById('MediumAttackReturnAnimController').style.visibility = 'hidden';
+    document.getElementById('IdleAnimController').style.visibility = 'visible';
 }
 
 function BeginPlayerDefend(){
