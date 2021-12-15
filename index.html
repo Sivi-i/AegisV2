@@ -5,10 +5,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="./Styling/Aegis.css" rel="stylesheet" type="text/css" />
-    <script
-      type="text/javascript"
-      src="./JavaScript/AnimationHandler.js"
-    ></script>
+    <script type="text/javascript" src="./JavaScript/SpriteMovementAnimator.js"></script>
+    <script type="text/javascript" src="./JavaScript/PlayerAnimationHandler.js"></script>
     <script type="text/javascript" src="./JavaScript/Player.js"></script>
   </head>
   <body onload="AnimationStart()">
@@ -25,6 +23,7 @@
             <p id="MediumAttackChargeUpAnimController"></p>
             <p id="MediumAttackRushAnimController"></p>
             <p id="MediumAttackReturnAnimController"></p>
+            <p id="StrongAttackAnimController"></p>
             <p id="JumpBackAnimController"></p>
             <p id="DefendAnimController"></p>
             <p id="HealAnimController"></p>
@@ -46,16 +45,16 @@
         </div>
         <div id="ButtonDiv">
           <button id="WeakAttackButton" class="GameButton" onclick="BeginWeakAttack()">Weak Attack</button>
-          <button id="MediumAttackButton" class="GameButton" onclick="BeginMediumAttack()">Medium Attack</button>
-          <button id="StrongAttackButton" class="GameButton" onclick="">Strong Attack</button>
+          <button id="MediumAttackButton" class="GameButton" onclick="MediumAttackStartAnimation()">Medium Attack</button>
+          <button id="StrongAttackButton" class="GameButton" onclick="BeginStrongAttack()">Strong Attack</button>
           <br />
           <br />
           <button id="BurstAttackButton" class="GameButton" onclick="">Burst Attack</button>
           <br />
           <br />
-          <button id="DefendButton" class="GameButton" onclick="">Defend</button>
-          <button id="ChargeButton" class="GameButton" onclick="">Charge</button>
-          <button id="HealButton" class="GameButton" onclick="">Heal</button>
+          <button id="DefendButton" class="GameButton" onclick="BeginPlayerDefend()">Defend</button>
+          <button id="ChargeButton" class="GameButton" onclick="BeginPlayerCharge()">Charge</button>
+          <button id="HealButton" class="GameButton" onclick="BeginPlayerHeal()">Heal</button>
         </div>
       </div>
     </div>
