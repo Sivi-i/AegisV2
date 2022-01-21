@@ -14,6 +14,17 @@
       <div id="GameBGDiv">
         <div id="GameScreenDiv">
           <div id="GameplayDiv">
+            <!--Enemy Animations-->
+            <p id="MageIdleAnimController"></p>
+            <p id="EnemyRunAnimController"></p>
+            <p id="EnemyWeakAttackAnimController"></p>
+            <p id="EnemyMediumAttackAnimController"></p>
+            <p id="EnemyStrongAttackAnimController"></p>
+            <p id="EnemyBurstAttackAnimController"></p>
+            <p id="EnemyDefendAnimController"></p>
+            <p id="EnemyChargeAnimController"></p>
+            <p id="EnemyHealAnimController"></p>
+            <p id="EnemyProjectileAnimController"></p>
             <!--Character Animations-->
             <p id="IdleAnimController"></p>
             <p id="DashAnimController"></p>
@@ -28,18 +39,8 @@
             <p id="DefendAnimController"></p>
             <p id="HealAnimController"></p>
             <p id="ChargeAnimController"></p>
-            <p id="SpecialAttackAnimController"></p>
-            <!--Enemy Animations-->
-            <p id="MageIdleAnimController"></p>
-            <p id="EnemyRunAnimController"></p>
-            <p id="EnemyWeakAttackAnimController"></p>
-            <p id="EnemyMediumAttackAnimController"></p>
-            <p id="EnemyStrongAttackAnimController"></p>
-            <p id="EnemyBurstAttackAnimController"></p>
-            <p id="EnemyDefendAnimController"></p>
-            <p id="EnemyChargeAnimController"></p>
-            <p id="EnemyHealAnimController"></p>
-            <p id="EnemyProjectileAnimController"></p>
+            <p id="BurstAttackAnimController"></p>
+            <p id="BurstExplosionParticleAnimController"></p>
             <div id="GameVFXDiv"></div>
           </div>
         </div>
@@ -49,7 +50,7 @@
           <button id="StrongAttackButton" class="GameButton" onclick="BeginStrongAttack()">Strong Attack</button>
           <br />
           <br />
-          <button id="BurstAttackButton" class="GameButton" onclick="">Burst Attack</button>
+          <button id="BurstAttackButton" class="GameButton" onclick="BeginBurstAttack()">Burst Attack</button>
           <br />
           <br />
           <button id="DefendButton" class="GameButton" onclick="BeginPlayerDefend()">Defend</button>

@@ -4,6 +4,10 @@
   margin: 0;
 }
 
+body {
+  background-color: black;
+}
+
 html {
   height: 100%;
   width: 100%;
@@ -170,21 +174,24 @@ html {
   visibility: hidden;
 }
 
-#SpecialAttackAnimController {
-  height: 52px;
-  width: 60px;
-  margin: 275px 230px;
-  background: url("../Assets/Sprites/Player/SpecAttack/SpecialAttack.png") 0px
-    0px;
+#BurstAttackAnimController {
+  height: 78px;
+  width: 84px;
+  margin: 255px 230px;
+  background: url("../Assets/Sprites/Player/Attacks/Burst_Attack/Burst_Bomb/Burst_Bomb_1.png")
+    0px 0px;
   background-repeat: no-repeat;
   position: absolute;
   visibility: hidden;
 }
 
+#BurstExplosionParticleAnimController {
+}
+
 #MageIdleAnimController {
   width: 49px;
   height: 49px;
-  margin: 275px 540px;
+  margin: 150px 540px;
   background: url("../Assets/Sprites/Enemies/Mages/Mage/Idle/MageIdle.png") 0px
     0px;
   background-repeat: no-repeat;

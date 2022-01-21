@@ -8,9 +8,7 @@ class SpriteMovementAnimator{
     animatorController;
     
 
-    constructor(){
-
-    }
+    constructor(){}
 
     AnimateXWithEasing(TransformX, Duration, EasingType, Iterations, ElementToAnimate){
         this.translateXAmount = TransformX;
@@ -27,6 +25,7 @@ class SpriteMovementAnimator{
         this.animationIteration = Iterations;
         this.easingType = EasingType;
         this.elementToAnimate = ElementToAnimate;
+        this.StartYAnimation();
     }
 
     AnimateXYWithEasing(TransformX, TransformY, Duration, EasingType, Iterations, ElementToAnimate){
@@ -36,6 +35,7 @@ class SpriteMovementAnimator{
         this.animationIteration = Iterations;
         this.easingType = EasingType;
         this.elementToAnimate = ElementToAnimate;
+        this.StartXYAnimation();
     }
 
     StartXAnimation(){
@@ -51,15 +51,48 @@ class SpriteMovementAnimator{
     }
     
     StartYAnimation(){
-
+        this.animatorController = document.getElementById(`${this.elementToAnimate}`).animate([
+            { transform: `translateY(${this.translateYAmount}px)`},
+        ],
+            {
+                duration: this.animationDuration,
+                iterations: this.animationIteration,
+                easing: `${this.easingType}`
+            }
+        );
     }
 
     StartXYAnimation(){
-
+        this.animatorController = document.getElementById(`${this.elementToAnimate}`).animate([
+            { transform: `translate3d(${this.translateXAmount}px, ${this.translateYAmount}px, 0px)`},
+            
+        ],
+            {
+                duration: this.animationDuration,
+                iterations: this.animationIteration,
+                easing: `${this.easingType}`
+            }
+        );
     }
 
     StopAnimation(){
         this.animatorController.pause();
+        this.animatorController.cancel();
+    }
+
+    StopAnimationInPlace(){
+        this.animatorController.commitStyles();
+    }
+
+    ClearAnimation(){
+        this.animatorController.cancel();
+        this.elementToAnimate = null;
+        this.animationDuration = null;
+        this.animationIteration = null;
+        this.translateXAmount = null;
+        this.translateYAmount = null;
+        this.easingType = null;
+        this.animatorController = null;
     }
     
 }
