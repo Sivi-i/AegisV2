@@ -603,6 +603,7 @@ function AirChargeAnimation(){
 
         if(animationFrames == 8){
             clearInterval(airChargeID);
+            spriteMovementTool.ClearAnimation();
             AirBurstRightAnimation();
         }
 
@@ -638,6 +639,7 @@ function AirBurstRightAnimation(){
            
            if(animationFrames == 4){
                 clearInterval(airBurstRightID);
+                spriteMovementTool.ClearAnimation();
                 AirBurstRightReleaseAnimation();
            }
 
@@ -666,6 +668,7 @@ function AirBurstRightReleaseAnimation(){
                 break;
             case 5: 
                 clearInterval(airBurstRightReleaseID);
+                spriteMovementTool.ClearAnimation();
                 AirBurstBottomLeftFloatAnimation();
             }
         animationFrames++;    
@@ -714,6 +717,7 @@ function AirBurstBottomLeftAnimation(){
 
         if(animationFrames == 4){
             clearInterval(airBurstBottomLeftRushID);
+            spriteMovementTool.ClearAnimation();
             AirBurstBottomLeftReleaseAnimation();
         }
         animationFrames++;
@@ -728,10 +732,134 @@ function AirBurstBottomLeftReleaseAnimation(){
     burstAttackController.style.height = "80px";
     burstAttackController.style.margin = "220px 450px";
     spriteMovementTool.AnimateXYWithEasing(-20, 20, 400, 'ease-out', 1, 'BurstAttackAnimController');
-    setTimeout(() => {}, 3000);
     burstAttackController.style.background = "url('Assets/Sprites/Player/Attacks/Medium_Attack/Medium_Attack_Return_Teleport.png')"; 
     burstAttackController.style.width = "42px";
+    burstBottomLeftReleaseID = setInterval(() => {
+        animationFrames++;
+        if(animationFrames == 2){
+            clearInterval(burstBottomLeftReleaseID);
+            AirBurstBottomRightPlacement();
+        }
+    }, 100);
 }
+
+function AirBurstBottomRightPlacement(){
+    animationFrames = 0;
+    let burstAttackController = document.getElementById('BurstAttackAnimController');
+    burstAttackController.style.margin = "0px 400px";
+    bottomRightBurstID =  setInterval(() => {
+        if(animationFrames == 1){
+            burstAttackController.style.width = "70px";
+            burstAttackController.style.height = "70px";
+            burstAttackController.style.background = "url('Assets/Sprites/Player/Attacks/Burst_Attack/Air_Burst/Bottom_Right/Air_Burst_Bottom_Right_5.png')";
+        }
+        if(animationFrames == 2){
+            clearInterval(bottomRightBurstID);
+            AirBurstBottomRightAnimation();
+        }
+        animationFrames++;
+    }, 25);
+    
+
+}
+
+function AirBurstBottomRightAnimation(){
+    animationFrames = 0;
+    let burstAttackController = document.getElementById('BurstAttackAnimController');
+    spriteMovementTool.AnimateXYWithEasing(200, 220, 200, 'ease-out', 1, 'BurstAttackAnimController');
+    botRightAnimID = setInterval(() => {
+        animationFrames++;
+        if(animationFrames % 2 == 0){
+            burstAttackController.style.background = "url('Assets/Sprites/Player/Attacks/Burst_Attack/Air_Burst/Bottom_Right/Air_Burst_Bottom_Right_1.png')";
+            burstAttackController.style.width = "100px";
+            burstAttackController.style.height = "100px";
+        }
+
+        if(animationFrames % 2 > 0){
+            burstAttackController.style.background = "url('Assets/Sprites/Player/Attacks/Burst_Attack/Air_Burst/Bottom_Right/Air_Burst_Bottom_Right_2.png')";
+            burstAttackController.style.width = "94px";
+            burstAttackController.style.height = "94px";
+            burstAttackController.style.backgroundPosition = "5px 5px";
+        }
+
+        if(animationFrames >= 5){
+            clearInterval(botRightAnimID);
+            //spriteMovementTool.StopAnimationInPlace();
+            AirBurstBottomRightReleaseAnimation();
+        }
+        
+    }, 50);
+}
+
+function AirBurstBottomRightReleaseAnimation(){
+    animationFrames = 0;
+    let burstAttackController = document.getElementById('BurstAttackAnimController');
+    burstAttackController.style.background = "url('Assets/Sprites/Player/Attacks/Burst_Attack/Air_Burst/Bottom_Right/Air_Burst_Bottom_Right_3.png')";
+    burstAttackController.style.width = "80px";
+    burstAttackController.style.height = "80px";
+    burstAttackController.style.margin = "50px 50px";
+    burstAttackController.style.margin = "225px 650px";
+    animationDelayID = setInterval(() => {
+        animationFrames++;
+        if(animationFrames == 20){
+            clearInterval(animationDelayID);
+        }
+    }, 5000);
+    burstAttackController.style.background = "url('Assets/Sprites/Player/Attacks/Medium_Attack/Medium_Attack_Return_Teleport.png')";
+    burstAttackController.style.width = "42px";
+    burstAttackController.style.height = "72px";
+    spriteMovementTool.StopAnimation();
+    setTimeout(AirBurstTopRightPlacement, 100);
+}
+
+function AirBurstTopRightPlacement(){
+    let burstAttackController = document.getElementById('BurstAttackAnimController');
+    burstAttackController.style.margin = "225px 400px";
+    setTimeout(AirBurstTopRightFloatAnimation, 100);
+}
+
+function AirBurstTopRightFloatAnimation(){
+    let burstAttackController = document.getElementById('BurstAttackAnimController');
+    burstAttackController.style.background = "url('Assets/Sprites/Player/Attacks/Burst_Attack/Air_Burst/Top_Right/Air_Burst_Top_Right_5.png')";
+    burstAttackController.style.width = "70px";
+    burstAttackController.style.height = "71px";
+    setTimeout(AirBurstTopRightAnimation, 20);
+}
+
+function AirBurstTopRightAnimation(){
+    animationFrames = 0;
+    let burstAttackController = document.getElementById('BurstAttackAnimController');
+     burstAttackController.style.width = "93px";
+    burstAttackController.style.height = "100px";
+    setTimeout(function(){spriteMovementTool.AnimateXYWithEasing(230, -230, 300, 'ease-out', 1, 'BurstAttackAnimController');}, 50);
+    //spriteMovementTool.AnimateXYWithEasing(200, -150, 200, 'ease-out', 1, 'BurstAttackAnimController');
+    topRightChargeID = setInterval(() => {
+        if(animationFrames % 2 == 0){
+            burstAttackController.style.background = "url('Assets/Sprites/Player/Attacks/Burst_Attack/Air_Burst/Top_Right/Air_Burst_Top_Right_1.png')";
+        }
+
+        if(animationFrames % 2 > 0){
+            burstAttackController.style.background = "url('Assets/Sprites/Player/Attacks/Burst_Attack/Air_Burst/Top_Right/Air_Burst_Top_Right_2.png')";
+            burstAttackController.style.backgroundPosition = "5px 3px";
+        }
+
+        if(animationFrames > 6){
+            clearInterval(topRightChargeID);
+            AirBurstLeftPlacement();
+        }
+        animationFrames++;
+    }, 50);
+}
+
+function AirBurstLeftPlacement(){
+    let burstAttackController = document.getElementById('BurstAttackAnimController');
+    burstAttackController.style.background = "url('Assets/Sprites/Player/Attacks/Middle_Attack/Middle_Attack_Return_Teleport.png')";
+    // burstAttackController.style.width = "42px";
+    // burstAttackController.style.height = "72px";
+    burstAttackController.style.margin = "200px 500px";
+}
+
+
 
 function BeginPlayerDefend(){
     PlayerDefendSphereAnimation();
@@ -843,43 +971,43 @@ function BeginMageIdle(){
     MageIdleAnimation();
 }
 
-function MageIdleAnimation(){
-    let position = 0;
-    mageIdleID = setInterval(() => {
-        document.getElementById('MageIdleAnimController').style.backgroundPosition = `-${position}px 0px`;
-        if(position < 1500){
-            position = position + 224;
-        }else{
-            position = 0;
-        }
-    }, 100);
-}
+// function MageIdleAnimation(){
+//     let position = 0;
+//     mageIdleID = setInterval(() => {
+//         document.getElementById('MageIdleAnimController').style.backgroundPosition = `-${position}px 0px`;
+//         if(position < 1500){
+//             position = position + 224;
+//         }else{
+//             position = 0;
+//         }
+//     }, 100);
+// }
 
-function BeginMageAttack(){
-    MageRunAnimation();
-}
+// function BeginMageAttack(){
+//     MageRunAnimation();
+// }
 
-function MageRunAnimation(){
-    let position = 0;
-    document.getElementById('MageIdleAnimController').style.visibility = 'hidden';
-    document.getElementById('MageRunAnimController').style.visibility = 'visible';
-    document.getElementById('MageRunAnimController').animate([
-        {transform: 'translateX(-270px)'}
-    ],
-        {
-            duration: 1200,
-            iterations: 1
-        }
-    );
-    mageRunID = setInterval(() => {
-        document.getElementById('MageRunAnimController').style.backgroundPosition = `-${position}px 0px`;
-        if(position < 1500){
-            position = position + 224;
-        }else{
-            position = 0;
-        }
-    }, 100);  
-}
+// function MageRunAnimation(){
+//     let position = 0;
+//     document.getElementById('MageIdleAnimController').style.visibility = 'hidden';
+//     document.getElementById('MageRunAnimController').style.visibility = 'visible';
+//     document.getElementById('MageRunAnimController').animate([
+//         {transform: 'translateX(-270px)'}
+//     ],
+//         {
+//             duration: 1200,
+//             iterations: 1
+//         }
+//     );
+//     mageRunID = setInterval(() => {
+//         document.getElementById('MageRunAnimController').style.backgroundPosition = `-${position}px 0px`;
+//         if(position < 1500){
+//             position = position + 224;
+//         }else{
+//             position = 0;
+//         }
+//     }, 100);  
+// }
 
 function AnimationStart(){
     IdleAnimation();
